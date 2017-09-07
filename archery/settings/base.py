@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'djangobower',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -103,9 +106,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
@@ -120,6 +123,8 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -132,11 +137,19 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Django Compressor
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_PATH, "../components")
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss',
+     'sass --scss --style compressed -I "%s/bower_components/foundation-sites/scss" -I "%s/bower_components/motion-ui" "{infile}" "{outfile}"' % (
+     BOWER_COMPONENTS_ROOT, BOWER_COMPONENTS_ROOT)),
+)
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "archery"
+WAGTAIL_SITE_NAME = "University of Warwick Archery Club"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'http://uwac.co.uk'
