@@ -23,17 +23,54 @@
   <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Muli:400,400i,700,700i" rel="stylesheet">
+
+  {% block extra_css %}
+    {# Override this in templates to add extra css #}
+  {% endblock %}
 </head>
 
-<body class="{% block body_class %}{% endblock %}">
+<body style="overflow: hidden" class="{% block body_class %}{% endblock %}">
 {% wagtailuserbar %}
 
-{% block content %}{% endblock %}
+<div class="grid-y grid-margin-y grid-frame">
+  <div class="shrink cell">
+    {# TODO: Navbar template tag #}
+    <div class="top-bar">
+      <div class="grid-container">
+        <div class="grid-x">
+          <div class="cell shrink">
+            <div class="top-bar-title">
+              <span class="hide-for-medium" data-responsive-toggle="responsive-menu">
+                <button class="menu-icon" type="button" data-toggle></button>
+              </span>
+              <a href="#"><strong>UWAC</strong></a>
+            </div>
+          </div>
+          <div class="auto cell">
+            <div class="top-bar-left" id="responsive-menu">
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li><a href="#" class="current">Foo</a></li>
+                <li><a href="#">Bar</a></li>
+                <li><a href="#">Baz</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="auto cell">
+    {% block content %}{% endblock %}
+  </div>
+  <div class="shrink cell">
+    {# TODO: Footer #}
+    Footer
+  </div>
+</div>
 
 {# Global javascript #}
-{# Global javascript #}
 <script type="text/javascript" src='{% static 'js/jquery.min.js' %}'></script>
-<script type="text/javascript" src='{% static 'js/foundation.min.js' %}'></script>
+<script type="text/javascript" src='{% static 'js/foundation.js' %}'></script>
 
 <script type="text/javascript">
     $(document).foundation();
