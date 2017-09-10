@@ -68,9 +68,11 @@
 $global-font-size: 100%;
 $global-width: rem-calc(960);
 $global-lineheight: 1.5;
+$primary-colour: #E53935;
+$accent-colour: #7c4dff;
 $foundation-palette: (
-  primary: #d32f2f,
-  secondary: #7c4dff,
+  primary: $primary-colour,
+  secondary: $accent-colour,
   success: #3adb76,
   warning: #ffae00,
   alert: #cc4b37,

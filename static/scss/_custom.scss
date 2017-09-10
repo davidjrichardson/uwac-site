@@ -2,3 +2,33 @@
 .grid-container {
   width: $grid-row-width;
 }
+
+.jumbotron {
+  background-blend-mode: multiply;
+  background: $primary-colour url(/static/img/hero_cover.jpg) center;
+
+  color: $white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  & .jumbotron-padding {
+    padding: $global-padding;
+  }
+}
+
+// Top-bar styling
+.top-bar {
+  // TODO
+
+  &.transparent a {
+    color: $white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &.transparent,
+  &.transparent .top-bar-left > ul {
+    background-color: transparent;
+  }
+}
