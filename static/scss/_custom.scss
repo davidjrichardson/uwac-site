@@ -16,7 +16,7 @@
   }
 
   & h1 {
-    font-size: 3.5rem;
+    padding-right: 2*$global-padding;
   }
 
   #triangle-mask {
@@ -137,5 +137,20 @@
 
   &.transparent {
     background-color: transparent;
+  }
+}
+
+// News feed
+.news {
+  margin-top: $global-margin;
+
+  .section-header {
+    border-bottom: 2px solid $primary-colour;
+    display: inline-block;
+    margin-bottom: 2*$global-margin;
+  }
+
+  .subtitle {
+    color: $dark-gray;
   }
 }

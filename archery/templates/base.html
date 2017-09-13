@@ -29,11 +29,11 @@
   {% endblock %}
 </head>
 
-<body style="overflow: hidden;" class="{% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{% endblock %}">
 {% wagtailuserbar %}
 
-<div class="grid-y grid-frame">
-  <div class="shrink cell">
+<div class="">
+  {% comment %}
     {% block topbar %}
       <div class="top-bar">
         <div class="container">
@@ -60,14 +60,14 @@
         </div>
       </div>
     {% endblock %}
-  </div>
-  <div class="auto cell">
-    {% block content %}{% endblock %}
-  </div>
-  <div class="shrink cell">
-    {# TODO: Footer #}
-    Footer
-  </div>
+    {% endcomment %}
+</div>
+<div class="">
+  {% block content %}{% endblock %}
+</div>
+<div class="">
+  {# TODO: Footer #}
+  Footer
 </div>
 
 {# Global javascript #}
