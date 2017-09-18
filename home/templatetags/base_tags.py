@@ -17,7 +17,7 @@ def get_site_root(context):
 
 # Retrieves the top menu items
 @register.inclusion_tag('tags/top_menu.html', takes_context=True)
-def top_menu(context, parent, calling_page=None):
+def top_menu(context, parent, calling_page=None, transparent=False):
     items = parent.get_children().live().in_menu()
     for item in items:
         item.show_dropdown = has_menu_children(item)
@@ -27,6 +27,7 @@ def top_menu(context, parent, calling_page=None):
         'calling_page': calling_page,
         'menuitems': items,
         'is_home': (calling_page.url == u'/' if calling_page else False),
+        'transparent': transparent,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }

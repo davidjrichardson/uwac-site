@@ -36,30 +36,7 @@
 <div class="site">
   <div class="navbar">
     {% block topbar %}
-      <div class="top-bar">
-        <div class="container">
-          <div class="top-bar-title">
-          <span class="hide-for-medium" data-responsive-toggle="responsive-menu">
-            <button class="menu-icon" type="button" data-toggle></button>
-          </span>
-            <a href="#">UWAC</a>
-          </div>
-          <div class="top-bar-left" id="responsive-menu">
-            <ul class="dropdown menu" data-dropdown-menu>
-              <li><a href="#" class="current">Foo</a></li>
-              <li>
-                <a href="#">Bar</a>
-                <ul class="menu vertical">
-                  <li><a href="#">One</a></li>
-                  <li><a href="#">Two</a></li>
-                  <li><a href="#">Three</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Baz</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      {% top_menu parent=site_root calling_page=self %}
     {% endblock %}
   </div>
   <div class="site-content">

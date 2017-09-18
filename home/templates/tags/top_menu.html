@@ -1,0 +1,25 @@
+{% load base_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+<div class="top-bar {% if transparent %}transparent{% endif %}">
+  <div class="container">
+    <div class="top-bar-title">
+      <a href="{% pageurl site_root %}">UWAC</a>
+    </div>
+    <div class="top-bar-right" id="responsive-menu">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="{% pageurl site_root %}" class="{% if is_home %}current{% endif %}">Home</a></li>
+        {% for menuitem in menuitems %}
+          <li>
+            <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">
+              {{ menuitem.title }}
+              {% if menuitem.show_dropdown %}
+                {% top_menu_children parent=menuitem %}
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
