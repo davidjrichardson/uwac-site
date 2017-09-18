@@ -32,8 +32,7 @@
           {% for menuitem in menuitems %}
             <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
           {% endfor %}
-          {# TODO: Admin back end link #}
-          <li><a href="#">Admin</a></li>
+          <li><a href="{% url 'wagtailadmin_home' %}">Admin</a></li>
         </ul>
       </div>
       <div class="cell">
