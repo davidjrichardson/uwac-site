@@ -1,4 +1,5 @@
-{% load static wagtailuserbar compress %}
+{% load static wagtailuserbar compress base_tags %}
+{% get_site_root as site_root %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -64,29 +65,7 @@
   <div class="site-content">
     {% block content %}{% endblock %}
   </div>
-  <div class="footer">
-    <div class="grid-container">
-      <div class="grid-x grid-padding-x">
-        <div class="cell small-12 medium-4">
-          <h5>University of Warwick Archery Club</h5>
-          <ul class="no-bullet social-list">
-            <li><a href="#"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i>
-              <p class="show-for-sr">Facebook</p></a></li>
-            <li><a href="#"><i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i>
-              <p class="show-for-sr">Twitter</p></a></li>
-          </ul>
-        </div>
-        <div class="sitemap cell small-12 medium-8">
-          <h6 class="sitemap-title">Sitemap</h6>
-          <ul class="no-bullet text-center sitemap-list">
-            <li><a href="#">Foo</a></li>
-            <li><a href="#">Bar</a></li>
-            <li><a href="#">Baz</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% footer parent=site_root %}
 </div>
 
 {# Global javascript #}

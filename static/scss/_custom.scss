@@ -173,6 +173,17 @@
   color: $white;
   padding: $global-padding 0;
 
+  & .credits {
+    color: rgba(255, 255, 255, 0.54);
+    margin-bottom: 0;
+    margin-top: $global-margin;
+    line-height: normal;
+
+    & a {
+      color: $white;
+    }
+  }
+
   & .sitemap {
     margin-bottom: $global-margin;
 
