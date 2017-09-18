@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block extra_css %}
-  <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet"/>
-{% endblock %}
-
 {% block body_class %}template-homepage{% endblock %}
 
 {% block topbar %}{% endblock %}
@@ -15,9 +11,6 @@
     <div class="top-bar transparent">
       <div class="container">
         <div class="top-bar-title">
-          <span class="hide-for-medium" data-responsive-toggle="responsive-menu">
-            <button class="menu-icon" type="button" data-toggle></button>
-          </span>
           <a href="#">UWAC</a>
         </div>
         <div class="top-bar-right" id="responsive-menu">
@@ -115,20 +108,4 @@
       </div>
     </div>
   </section>
-{% endblock %}
-
-{% block extra_js %}
-  <script type="text/javascript" src='{% static 'js/owl.carousel.min.js' %}'></script>
-
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $(".owl-carousel").owlCarousel({
-              loop: true,
-              nav: false,
-              center: true,
-              items: 1,
-              stagePadding: 400
-          });
-      })
-  </script>
 {% endblock %}

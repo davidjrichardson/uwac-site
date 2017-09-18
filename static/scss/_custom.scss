@@ -8,7 +8,8 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
   & .jumbotron-padding {
-    padding: $global-padding;
+    padding-top: $global-padding;
+    padding-bottom: $global-padding;
   }
 
   & p {
@@ -35,7 +36,6 @@
   & > .container {
     max-width: 60rem;
     margin: 0 auto;
-    padding: 0 $global-padding;
 
     & > div {
       display: inline-block;
@@ -51,7 +51,7 @@
       }
     }
 
-    & .is-dropdown-submenu {
+    & .is-dropdown-submenu.is-dropdown-submenu.is-dropdown-submenu.is-dropdown-submenu {
       border: none;
       background: #FAFAFA;
       border-radius: 2*$global-radius;
@@ -152,5 +152,65 @@
 
   .subtitle {
     color: $dark-gray;
+  }
+}
+
+// Flexbox footer bottom
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+  margin-bottom: $global-margin;
+}
+
+// Footer
+.footer {
+  background-color: #2C3134;
+  color: $white;
+  padding: $global-padding 0;
+
+  & .sitemap {
+    margin-bottom: $global-margin;
+
+    & .sitemap-title {
+      font-size: rem-calc(14px);
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.54);
+
+      margin: 0;
+    }
+
+    & .sitemap-list > li {
+      margin-right: $global-margin;
+
+      float: left;
+
+      & > a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.2s ease-out;
+
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .social-list > li {
+    float: left;
+    margin-right: $global-margin;
+
+    & > a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.2s ease-out;
+
+      &:hover {
+        color: $white;
+      }
+    }
   }
 }
