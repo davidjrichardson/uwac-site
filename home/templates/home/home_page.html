@@ -1,13 +1,21 @@
 {% extends "base.html" %}
-{% load static base_tags %}
+{% load static base_tags wagtailcore_tags wagtailimages_tags %}
 {% get_site_root as site_root %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-{#{% block topbar %}{% endblock %}#}
+{% block extra_css %}
+  <style type="text/css">
+    .jumbotron {
+      {# TODO: Load this from a field in django #}
+      background: #E53935 {% if cover_image %}url({{ cover_image }}) center{% endif %};
+    }
+  </style>
+{% endblock %}
+
+{% block topbar %}{% endblock %}
 
 {% block content %}
-
   <section class="jumbotron">
     {% top_menu parent=site_root calling_page=self transparent=True %}
     <div class="grid-container jumbotron-padding">
@@ -33,11 +41,8 @@
           </svg>
         </div>
         <div class="auto cell">
-          <h1>University of Warwick Archery Club</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed sollicitudin nibh. Cras quis dui
-            dapibus, convallis lorem nec, rutrum felis. Nunc non nisi faucibus, tristique mi a, ultricies lorem.
-            Phasellus rutrum ut nisl in elementum. Vestibulum non ipsum vel orci venenatis molestie. Suspendisse eget
-            nisi nisl.</p>
+          <h1>{{ site_root.title }}</h1>
+          <p>{{ page.description }}</p>
         </div>
       </div>
     </div>
