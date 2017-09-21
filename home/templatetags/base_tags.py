@@ -15,6 +15,23 @@ def get_site_root(context):
     return context['request'].site.root_page
 
 
+# Retrieves top-level menu items for the sidebar
+@register.inclusion_tag('tags/side_menu.html', takes_context=True)
+def side_menu(context, parent, calling_page=None):
+    items = parent.get_children().live().in_menu()
+    for item in items:
+        item.show_drilldown = has_menu_children(item)
+        item.active = (calling_page.url.startswith(item.url) if calling_page else False)
+
+    return {
+        'calling_page': calling_page,
+        'menuitems': items,
+        'is_home': (calling_page.url == u'/' if calling_page else False),
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
 # Retrieves the top menu items
 @register.inclusion_tag('tags/top_menu.html', takes_context=True)
 def top_menu(context, parent, calling_page=None, transparent=False):
@@ -35,11 +52,12 @@ def top_menu(context, parent, calling_page=None, transparent=False):
 
 # Get the visible children of a top-level menu item
 @register.inclusion_tag('tags/top_menu_children.html', takes_context=True)
-def top_menu_children(context, parent):
+def nav_menu_children(context, parent, side_menu=False):
     children = parent.get_children().live().in_menu()
     return {
         'parent': parent,
         'menuitems_children': children,
+        'side_menu': side_menu,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }

@@ -1,0 +1,21 @@
+{% load base_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+
+<div class="sidenav">
+  <div class="sidenav-title">
+    <a href="{% pageurl site_root %}">UWAC</a>
+  </div>
+  <div class="sidenav-menu">
+    <ul class="vertical menu drilldown" data-drilldown>
+      <li><a href="{% pageurl site_root %}" class="{% if is_home %}current{% endif %}">Home</a></li>
+      {% for menuitem in menuitems %}
+        <li>
+          <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">{{ menuitem.title }}</a>
+          {% if menuitem.show_drilldown %}
+            {% nav_menu_children parent=menuitem %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

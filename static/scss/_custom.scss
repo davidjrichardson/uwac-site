@@ -177,7 +177,7 @@
 
 // Footer
 .footer {
-  background-color: #2C3134;
+  background-color: $darker-gray;
   color: $white;
   padding: $global-padding 0;
 
@@ -233,3 +233,5 @@
     }
   }
 }
+
+// Side bar

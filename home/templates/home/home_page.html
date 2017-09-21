@@ -7,8 +7,7 @@
 {% block extra_css %}
   <style type="text/css">
     .jumbotron {
-    {# TODO: Load this from a field in django #} background: #E53935 {% if cover_image %}url({{ cover_image }})
-      center{% endif %};
+      background: #E53935 {% if cover_image %}url({{ cover_image }}) center{% endif %};
     }
   </style>
 {% endblock %}
@@ -58,8 +57,8 @@
         <div class="cell">
           <h2 class="section-header">Recent news</h2>
         </div>
-      {# TODO #}
-      {% comment %}
+        {# TODO #}
+        {% comment %}
       <div class="grid-x article">
         <div class="cell">
           <a href="#"><h2>Beginner's Course & Taster Sessions 2017</h2></a>
@@ -94,6 +93,6 @@
         </div>
       </div>
       {% endcomment %}
-    </div>
+      </div>
   </section>
 {% endblock %}

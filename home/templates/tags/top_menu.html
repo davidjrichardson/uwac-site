@@ -17,7 +17,7 @@
             <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">
               {{ menuitem.title }}
               {% if menuitem.show_dropdown %}
-                {% top_menu_children parent=menuitem %}
+                {% nav_menu_children parent=menuitem %}
               {% endif %}
             </a>
           </li>
