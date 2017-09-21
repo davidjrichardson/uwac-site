@@ -33,7 +33,11 @@
 <body class="{% block body_class %}{% endblock %}">
 {% wagtailuserbar %}
 
-<div class="site">
+<div class="off-canvas position-right" id="offCanvas" data-off-canvas>
+
+</div>
+
+<div class="site off-canvas-content" data-off-canvas-content>
   <div class="navbar">
     {% block topbar %}
       {% top_menu parent=site_root calling_page=self %}

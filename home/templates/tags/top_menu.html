@@ -7,7 +7,10 @@
       <a href="{% pageurl site_root %}">UWAC</a>
     </div>
     <div class="top-bar-right" id="responsive-menu">
-      <ul class="dropdown menu" data-dropdown-menu>
+      <span class="hide-for-medium">
+        <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
+      </span>
+      <ul class="dropdown menu show-for-medium" data-dropdown-menu>
         <li><a href="{% pageurl site_root %}" class="{% if is_home %}current{% endif %}">Home</a></li>
         {% for menuitem in menuitems %}
           <li>
