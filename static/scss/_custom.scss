@@ -36,6 +36,15 @@
     max-width: 60rem;
     margin: 0 auto;
 
+    padding-left: 0.125rem; //0.625rem - 0.5rem
+    padding-right: 0.625rem;
+
+
+    @include breakpoint(medium) {
+      padding-left: $global-padding - 0.5rem;
+      padding-right: $global-padding;
+    }
+
     & > div {
       display: inline-block;
     }
