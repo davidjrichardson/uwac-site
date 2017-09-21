@@ -39,7 +39,6 @@
     padding-left: 0.125rem; //0.625rem - 0.5rem
     padding-right: 0.625rem;
 
-
     @include breakpoint(medium) {
       padding-left: $global-padding - 0.5rem;
       padding-right: $global-padding;
@@ -235,3 +234,46 @@
 }
 
 // Side bar
+.sidenav {
+  margin-top: 2*$global-margin;
+  font-size: 1.2rem;
+
+  & .close-button {
+    color: lighten($darker-gray, 10%);
+    transition: color 0.2s ease-out;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  & .sidenav-title a {
+    display: block;
+    padding: $global-padding;
+    font-weight: bold;
+    color: $white;
+    font-size: 1.5rem;
+  }
+
+  & .sidenav-menu ul li {
+    & .js-drilldown-back a:before {
+      border-color: transparent $white transparent transparent;
+    }
+
+    & a {
+      background-color: $darker-gray;
+      color: $white;
+      transition: background-color 0.2s ease-out;
+      padding: $global-padding;
+
+      &.active,
+      &:hover {
+        background-color: lighten($darker-gray, 10%);
+      }
+
+      &:after {
+        border-color: transparent transparent transparent $white;
+      }
+    }
+  }
+}
