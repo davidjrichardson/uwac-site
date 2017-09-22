@@ -3,8 +3,9 @@ from __future__ import absolute_import, unicode_literals
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
 from django.utils import timezone
+from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.wagtailcore.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock
 from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
@@ -43,6 +44,66 @@ class BlogStreamBlock(StreamBlock):
         'startRows': 1,
         'startCols': 2
     })
+
+
+class GalleryImage(models.Model):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+',
+        help_text='This is the image displayed on the home page as the first thing a user will see'
+    )
+    attribution = models.CharField(max_length=255)
+    caption = models.CharField(max_length=255, blank=True)
+    page = ParentalKey('GalleryPage', related_name='gallery_items')
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('attribution'),
+        FieldPanel('caption')
+    ]
+
+
+class GalleryPage(Page):
+    parent_page_types = ['home.GalleryIndexPage']
+
+    date = models.DateTimeField('Gallery date', default=timezone.now)
+    description = RichTextField(default='',
+                                help_text='The description of the event or purpose of the gallery, displayed under the title')
+    gallery_cover = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='+',
+        help_text='This is the image displayed on the home page as the first thing a user will see'
+    )
+
+
+# This is required for the GalleryPage reference to work on the inline panel
+GalleryPage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        FieldPanel('description'),
+        FieldPanel('date'),
+    ], heading='Gallery information'),
+    InlinePanel('gallery_items', label='Gallery photos')
+]
+
+
+class GalleryIndexPage(Page):
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['home.GalleryPage']
+
+    @property
+    def galleries(self):
+        return GalleryPage.objects.live().descendant_of(self).order_by('-date')
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(GalleryIndexPage, self).get_context(request)
+        context['galleries'] = self.galleries
+
+        return context
 
 
 class HomePage(Page):
