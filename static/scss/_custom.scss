@@ -32,6 +32,21 @@
   background-color: $primary-colour;
   text-shadow: none;
 
+  & .menu-icon {
+
+    &::after {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 7px rgba(255, 255, 255, 0.8), 0 14px rgba(255, 255, 255, 0.8);
+      transition: background 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      background: $white;
+      box-shadow: 0 7px $white, 0 14px $white;
+    }
+  }
+
   & > .container {
     max-width: 60rem;
     margin: 0 auto;
