@@ -79,7 +79,11 @@
     & > .top-bar-right {
       float: right;
       position: relative;
-      top: $global-padding;
+      top: rem-calc(14px);
+
+      @include breakpoint(medium) {
+        top: rem-calc(12px);
+      }
     }
 
     & > .top-bar-right > .dropdown.menu > li {
