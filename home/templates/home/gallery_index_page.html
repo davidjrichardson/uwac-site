@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static base_tags wagtailcore_tags wagtailimages_tags %}
+{% get_site_root as site_root %}
+
+{% block body_class %}template-gallery-index{% endblock %}
+
+{% block content %}
+  <div class="grid-container gallery-container">
+    <div class="grid-x grid-margin-x">
+      <div class="cell">
+        <h2 class="section-header">Photo gallery</h2>
+        <p>{{ page.description | richtext }}</p>
+      </div>
+    </div>
+    <div class="gallery-list">
+      {% for list in galleries %}
+        <div class="grid-x grid-margin-x gallery-row">
+          {% for item in list %}
+            <div class="small-12 medium-auto cell gallery-item">
+              {% image item.gallery_cover width-400 as gallery_item %}
+              <a href="{% pageurl item %}">
+                <img src="{{ gallery_item.url }}" alt="{{ item.title }}" class="gallery-item-image">
+                <span class="gallery-item-title">{{ item.title }}</span>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -75,7 +75,6 @@ class GalleryPage(Page):
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
-        blank=True,
         related_name='+',
         help_text='This is the image displayed on the home page as the first thing a user will see'
     )
@@ -86,14 +85,23 @@ GalleryPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('description'),
         FieldPanel('date'),
+        ImageChooserPanel('gallery_cover')
     ], heading='Gallery information'),
     InlinePanel('gallery_items', label='Gallery photos')
 ]
 
 
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+
 class GalleryIndexPage(Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['home.GalleryPage']
+
+    description = RichTextField(default='')
 
     @property
     def galleries(self):
@@ -101,7 +109,9 @@ class GalleryIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(GalleryIndexPage, self).get_context(request)
-        context['galleries'] = self.galleries
+
+        # Chunkify the list of galleries into triplets
+        context['galleries'] = chunks(self.galleries, 3)
 
         return context
 

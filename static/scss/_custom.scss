@@ -166,15 +166,15 @@
   }
 }
 
+.section-header {
+  border-bottom: 2px solid $primary-colour;
+  display: inline-block;
+  margin-bottom: 2*$global-margin;
+}
+
 // News feed
 .news {
   margin-top: $global-margin;
-
-  .section-header {
-    border-bottom: 2px solid $primary-colour;
-    display: inline-block;
-    margin-bottom: 2*$global-margin;
-  }
 
   .subtitle {
     color: $dark-gray;
@@ -294,5 +294,18 @@
         border-color: transparent transparent transparent $white;
       }
     }
+  }
+}
+
+// Photo gallery
+.gallery-container {
+  padding-top: $global-padding;
+
+  & .gallery-item img {
+    width: 100%;
+  }
+
+  & .gallery-item-title {
+    padding: 1rem 0;
   }
 }
