@@ -8,12 +8,11 @@ from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.wagtailcore.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock
 from wagtail.wagtailcore.fields import StreamField, RichTextField
+from wagtail.wagtailcore.models import Page
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
-
-from wagtail.wagtailcore.models import Page
 
 
 class PullQuoteBlock(StructBlock):
@@ -128,10 +127,14 @@ class HomePage(Page):
         related_name='+',
         help_text='This is the image displayed on the home page as the first thing a user will see'
     )
+    cover_image_credit = models.CharField(blank=True,
+                                          max_length=100,
+                                          help_text='The author of the photograph for the image on the home page')
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname='full'),
-        ImageChooserPanel('cover_image')
+        ImageChooserPanel('cover_image'),
+        FieldPanel('cover_image_credit')
     ]
 
     @property
