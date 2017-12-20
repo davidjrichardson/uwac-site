@@ -53,6 +53,11 @@
 
   <section class="news">
     <div class="grid-container">
+      {% if cover_image_credit %}
+        <p class="cover-credit">
+          Banner image credit: {{ cover_image_credit }}
+        </p>
+      {% endif %}
       <div class="infinite-container">
         <div class="grid-x">
           <div class="cell">
@@ -77,8 +82,12 @@
       </div>
 
       <div class="cell loading-posts" style="display: none;">
-        {# TODO: Loading spinner here #}
-        <p class="lead text-center">Loading...</p>
+        <div class="spinner">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+        </div>
+
+        <p class="text-center">Loading...</p>
       </div>
 
       {% if blogs.has_next %}
