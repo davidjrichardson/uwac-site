@@ -21,7 +21,7 @@
       <div class="grid-x grid-margin-x">
         <div class="shrink cell show-for-medium">
           <svg width="153px" height="200px" viewBox="0 0 213 280" version="1.1" xmlns="http://www.w3.org/2000/svg"
-               xmlns:xlink="http://www.w3.org/1999/xlink">
+          >
             <g transform="translate(-1.000000, 0.000000)" fill="#FFF">
               <ellipse cx="87.46" cy="72.86" rx="30.7" ry="27.12"></ellipse>
               <path
@@ -45,17 +45,19 @@
         </div>
       </div>
     </div>
-    <svg version="1.1" id="triangle-mask" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg version="1.1" id="triangle-mask" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
      viewBox="0 0 1280 70" enable-background="new 0 0 1280 70" xml:space="preserve" preserveAspectRatio="none">
       <polygon points="1280,70 0,70 1280,0 "></polygon>
     </svg>
   </section>
 
   <section class="news">
-    <div class="grid-container infinite-container">
-      <div class="grid-x">
-        <div class="cell">
-          <h2 class="section-header">Recent news</h2>
+    <div class="grid-container">
+      <div class="infinite-container">
+        <div class="grid-x">
+          <div class="cell">
+            <h2 class="section-header">Recent news</h2>
+          </div>
         </div>
 
         {% for post in blogs %}
@@ -72,13 +74,18 @@
             </div>
           </div>
         {% endfor %}
-
-        {% if blogs.has_next %}
-          <div class="cell">
-            <p><a class="infinite-more-link" href="?page={{ blogs.next_page_number }}">More posts</a></p>
-          </div>
-        {% endif %}
       </div>
+
+      <div class="cell loading-posts" style="display: none;">
+        {# TODO: Loading spinner here #}
+        <p class="lead text-center">Loading...</p>
+      </div>
+
+      {% if blogs.has_next %}
+        <div class="cell">
+          <p><a class="infinite-more-link" href="?page={{ blogs.next_page_number }}">More posts</a></p>
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endblock %}
@@ -92,12 +99,13 @@
       var infinite = new Waypoint.Infinite({
           element: $('.infinite-container')[0],
           onBeforePageLoad: function () {
-              // TODO
-              // $('.loading-posts').show();
+              // TODO: Animate the loading state in/out
+              $('.loading-posts').show();
           },
-          onAfterPageLoad: function () {
-              // TODO
-              // $('.loading-posts').hide();
+          onAfterPageLoad: function ($items) {
+              // TODO: Animate the loading state in/out
+              // TODO: Animate the new items in
+              $('.loading-posts').hide();
           }
       })
   </script>

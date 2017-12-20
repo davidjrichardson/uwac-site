@@ -1,5 +1,3 @@
-from __future__ import absolute_import, unicode_literals
-
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
 from django.utils import timezone
@@ -145,7 +143,7 @@ class HomePage(Page):
         context = super(HomePage, self).get_context(request)
 
         # Paginate the blog posts for infinite scroll
-        paginator = Paginator(self.blogs, 10)
+        paginator = Paginator(self.blogs, 5)
         try:
             blogs = paginator.page(request.GET.get('page', 1))
         except PageNotAnInteger:
