@@ -79,3 +79,8 @@ def footer(context, parent):
             # required by the pageurl tag that we want to use within this template
             'request': context['request'],
         }
+
+
+@register.filter
+def more_than_one(collection):
+    return len(collection) > 1

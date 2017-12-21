@@ -332,26 +332,38 @@
 }
 
 @-webkit-keyframes sk-cubemove {
-  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
-  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
-  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
-  100% { -webkit-transform: rotate(-360deg) }
+  25% {
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5)
+  }
+  50% {
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg)
+  }
+  75% {
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5)
+  }
+  100% {
+    -webkit-transform: rotate(-360deg)
+  }
 }
 
 @keyframes sk-cubemove {
   25% {
     transform: translateX(42px) rotate(-90deg) scale(0.5);
     -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
+  }
+  50% {
     transform: translateX(42px) translateY(42px) rotate(-179deg);
     -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
+  }
+  50.1% {
     transform: translateX(42px) translateY(42px) rotate(-180deg);
     -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
+  }
+  75% {
     transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
     -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
+  }
+  100% {
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
@@ -361,11 +373,122 @@
 .gallery-container {
   padding-top: $global-padding;
 
-  & .gallery-item img {
-    width: 100%;
-  }
+  & .gallery-item {
+    margin-left: $global-margin/2;
+    margin-right: $global-margin/2;
+    margin-bottom: $global-margin;
 
-  & .gallery-item-title {
-    padding: 1rem 0;
+    & figure {
+      position: relative;
+      overflow: hidden;
+
+      & h2 {
+        text-transform: uppercase;
+      }
+
+      & p {
+        letter-spacing: 1px;
+        font-size: 68.5%;
+      }
+
+      & h2, p {
+        margin: 0;
+      }
+
+      & figcaption {
+        padding: 2em;
+        color: #fff;
+        font-size: 1.25em;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+
+        &:before, &:after {
+          pointer-events: none;
+        }
+
+        & > a {
+          z-index: 1000;
+          text-indent: 200%;
+          white-space: nowrap;
+          font-size: 0;
+          opacity: 0;
+        }
+
+        &, & > a {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &.effect-sadie {
+        & p {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: $global-padding;
+          width: 100%;
+          opacity: 0;
+          -webkit-transform: translate3d(0, 10px, 0);
+          transform: translate3d(0, 10px, 0);
+        }
+
+        &:hover h2 {
+          color: #fff;
+          -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -40px, 0);
+          transform: translate3d(0, -50%, 0) translate3d(0, -40px, 0);
+        }
+
+        & h2 {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          padding: $global-padding;
+          color: rgba(255, 255, 255, 0.95);
+          -webkit-transition: -webkit-transform 0.35s, color 0.35s;
+          transition: transform 0.35s, color 0.35s;
+          -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+        }
+
+        & p, & figcaption:before {
+          -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+          transition: opacity 0.35s, transform 0.35s;
+        }
+
+        &:hover p, &:hover figcaption:before {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+
+        & figcaption::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: -webkit-linear-gradient(top, transparentize($primary-colour, 1) 0%,
+                  transparentize($primary-colour, 0.2) 75%);
+          background: linear-gradient(to bottom, transparentize($primary-colour, 1) 0%,
+                  transparentize($primary-colour, 0.2) 75%);
+          content: '';
+          opacity: 0;
+          -webkit-transform: translate3d(0, 50%, 0);
+          transform: translate3d(0, 50%, 0);
+        }
+      }
+    }
+
+    & img {
+      width: 100%;
+      position: relative;
+      display: block;
+      min-height: 100%;
+      max-width: 100%;
+    }
   }
 }

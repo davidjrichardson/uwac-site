@@ -107,8 +107,8 @@ class GalleryIndexPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(GalleryIndexPage, self).get_context(request)
 
-        # Chunkify the list of galleries into triplets
-        context['galleries'] = chunks(self.galleries, 3)
+        # Chunkify the list of galleries into pairs
+        context['galleries'] = chunks(self.galleries, 2)
 
         return context
 

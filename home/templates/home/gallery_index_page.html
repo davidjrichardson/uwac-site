@@ -14,14 +14,24 @@
     </div>
     <div class="gallery-list">
       {% for list in galleries %}
-        <div class="grid-x grid-margin-x gallery-row">
+        <div class="grid-x gallery-row">
           {% for item in list %}
-            <div class="small-12 medium-auto cell gallery-item">
-              {% image item.gallery_cover width-400 as gallery_item %}
-              <a href="{% pageurl item %}">
+            <div class="small-12 medium-auto cell gallery-item {% if list|more_than_one %}singular{% endif %}">
+              {% if list|more_than_one %}
+                {% image item.gallery_cover width-400 as gallery_item %}
+              {% else %}
+                {% image item.gallery_cover width-800 as gallery_item %}
+              {% endif %}
+              <figure class="effect-sadie">
                 <img src="{{ gallery_item.url }}" alt="{{ item.title }}" class="gallery-item-image">
-                <span class="gallery-item-title">{{ item.title }}</span>
-              </a>
+                <figcaption>
+                  <div>
+                    <h2 class="gallery-item-title">{{ item.title }}</h2>
+                    <p class="gallery-item-date">Published on {{ item.date|date:'jS F Y' }}</p>
+                  </div>
+                  <a href="{% pageurl item %}">View more</a>
+                </figcaption>
+              </figure>
             </div>
           {% endfor %}
         </div>
