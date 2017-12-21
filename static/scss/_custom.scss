@@ -184,6 +184,22 @@
   .subtitle {
     color: $dark-gray;
   }
+
+  .article {
+    position: relative;
+    animation: post-show 0.8s;
+  }
+}
+
+@keyframes post-show {
+  0% {
+    opacity: 0;
+    top: -20px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
 }
 
 // Flexbox footer bottom
