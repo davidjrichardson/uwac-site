@@ -79,7 +79,7 @@ class GalleryPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(GalleryPage, self).get_context(request)
 
-        context['gallery_cover'] = self.gallery_cover.get_rendition('width-1536').url
+        context['gallery_photos'] = chunks(self.gallery_items, 3)
 
         return context
 
