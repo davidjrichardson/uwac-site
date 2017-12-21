@@ -1,5 +1,10 @@
 // Custom CSS
 .jumbotron {
+  // TODO: Flexbox layout for the jumbotron
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
   background-blend-mode: multiply;
   background-size: cover;
 
@@ -7,6 +12,7 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
   & .jumbotron-padding {
+    flex: 1;
     padding-top: $global-padding;
     padding-bottom: $global-padding;
   }
@@ -19,11 +25,14 @@
     padding-right: 2*$global-padding;
   }
 
-  #triangle-mask {
+  .jumbotron-mask {
     width: 100%;
     height: 100px;
     fill: $body-background;
-    margin-bottom: -6px;
+    //margin-bottom: -6px;
+    //position: absolute;
+    //bottom: 0;
+    //left: 0;
   }
 }
 
@@ -385,7 +394,7 @@
   }
 }
 
-// Photo gallery
+// Photo gallery index
 .gallery-container {
   padding-top: $global-padding;
 
@@ -506,5 +515,44 @@
       min-height: 100%;
       max-width: 100%;
     }
+  }
+}
+
+// Photo gallery page
+.gallery-jumbotron {
+  min-height: 40vh;
+  background-blend-mode: normal;
+  position: relative;
+
+  @include breakpoint(medium) {
+    min-height: 67vh;
+  }
+
+  &:before {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(top, transparentize($primary-colour, 0.2) 0%,
+            transparentize($primary-colour, 1) 67%);
+    background: linear-gradient(to bottom, transparentize($primary-colour, 0.2) 0%,
+            transparentize($primary-colour, 1) 67%);
+    content: '';
+  }
+
+  & .top-bar,
+  & .jumbotron-padding {
+    z-index: 2;
+  }
+
+  & p {
+    color: $white;
+  }
+
+  & .gallery-description,
+  & .gallery-description * {
+    text-align: center;
   }
 }

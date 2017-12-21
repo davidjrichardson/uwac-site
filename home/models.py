@@ -76,6 +76,13 @@ class GalleryPage(Page):
         help_text='This is the image displayed on the home page as the first thing a user will see'
     )
 
+    def get_context(self, request, *args, **kwargs):
+        context = super(GalleryPage, self).get_context(request)
+
+        context['gallery_cover'] = self.gallery_cover.get_rendition('width-1536').url
+
+        return context
+
 
 # This is required for the GalleryPage reference to work on the inline panel
 GalleryPage.content_panels = Page.content_panels + [
@@ -98,7 +105,7 @@ class GalleryIndexPage(Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['home.GalleryPage']
 
-    description = RichTextField(default='')
+    description = RichTextField(default='', blank=True)
 
     @property
     def galleries(self):
@@ -111,6 +118,11 @@ class GalleryIndexPage(Page):
         context['galleries'] = chunks(self.galleries, 2)
 
         return context
+
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description')
+    ]
 
 
 class HomePage(Page):
