@@ -82,5 +82,10 @@ def footer(context, parent):
 
 
 @register.filter
+def is_portrait(image):
+    return image.width < image.height
+
+
+@register.filter
 def more_than_one(collection):
     return len(collection) > 1

@@ -43,7 +43,7 @@
       {% for photo in self.photos %}
         {% image photo.image min-500x500 as image %}
         {% image photo.image min-1024x1024 as image_large %}
-        <figure class="gallery-item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <figure class="gallery-item {% if image|is_portrait %}vertical{% endif %}" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
           <a href="{{ image_large.url }}" itemprop="contentUrl"
              data-size="{{ image_large.width }}x{{ image_large.height }}">
             <img src="{{ image.url }}" alt="{{ item.title }}" itemprop="thumbnail">
