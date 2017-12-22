@@ -5,37 +5,28 @@
 {% block body_class %}template-gallery-index{% endblock %}
 
 {% block content %}
-  <div class="grid-container gallery-container">
+  <div class="grid-container">
     <div class="grid-x grid-margin-x">
-      <div class="cell">
+      <div class="cell section-header">
         <h2 class="section-header">Photo gallery</h2>
-        <p>{{ page.description | richtext }}</p>
+        {% if page.description %}
+          {{ page.description | richtext }}
+        {% endif %}
       </div>
     </div>
     <div class="gallery-list">
-      {% for list in galleries %}
-        {# TODO: Refactor using this CSS grid (https://codepen.io/Kseso/pen/ZJbEMe) #}
-        <div class="grid-x gallery-row">
-          {% for item in list %}
-            <div class="small-12 medium-auto cell gallery-item {% if list|more_than_one %}singular{% endif %}">
-              {% if list|more_than_one %}
-                {% image item.gallery_cover min-333x333 as gallery_item %}
-              {% else %}
-                {% image item.gallery_cover min-500x500 as gallery_item %}
-              {% endif %}
-              <figure class="effect-sadie">
-                <img src="{{ gallery_item.url }}" alt="{{ item.title }}" class="gallery-item-image">
-                <figcaption>
-                  <div>
-                    <h2 class="gallery-item-title">{{ item.title }}</h2>
-                    <p class="gallery-item-date">Published on {{ item.date|date:'jS F Y' }}</p>
-                  </div>
-                  <a href="{% pageurl item %}">View more</a>
-                </figcaption>
-              </figure>
+      {% for gallery in self.galleries %}
+        {% image gallery.gallery_cover min-500x500 as thumbnail %}
+        <figure class="effect-sadie {% if thumbnail|is_portrait %}vertical{% endif %}">
+          <img src="{{ thumbnail.url }}" alt="{{ gallery.title }}" class="gallery-item-image">
+          <figcaption>
+            <div>
+              <h2 class="gallery-item-title">{{ gallery.title }}</h2>
+              <p class="gallery-item-date">Published on {{ gallery.date|date:'jS F Y' }}</p>
             </div>
-          {% endfor %}
-        </div>
+            <a href="{% pageurl gallery %}">View more</a>
+          </figcaption>
+        </figure>
       {% endfor %}
     </div>
   </div>
