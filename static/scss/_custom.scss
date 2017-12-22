@@ -392,7 +392,7 @@
 }
 
 // Photo gallery index
-.gallery-container {
+.template-gallery-index .gallery-container {
   padding-top: $global-padding;
 
   & .gallery-item {
@@ -567,4 +567,13 @@
   & .gallery-description * {
     text-align: center;
   }
+}
+
+.template-gallery-page .gallery-container {
+  .gallery-item {
+    figcaption {
+      display: none;
+    }
+  }
+//  TODO
 }

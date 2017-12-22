@@ -79,7 +79,7 @@ class GalleryPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(GalleryPage, self).get_context(request)
 
-        context['gallery_photos'] = chunks(self.gallery_items, 3)
+        context['gallery_photos'] = chunks(self.gallery_items.all(), 3)
 
         return context
 

@@ -7,21 +7,12 @@
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'scss/photoswipe.css' %}"/>
   <link rel="stylesheet" href="{% static 'scss/photoswipe-default-skin.css' %}"/>
-
-  <style type="text/css">
-    {% comment %}.jumbotron {
-      background: #E53935 url({{ gallery_cover }}) center;
-    }{% endcomment %}
-  </style>
 {% endblock %}
 
 {% block extra_js %}
   <script src="{% static 'js/photoswipe.min.js' %}"></script>
   <script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
-
-  <script type="text/javascript">
-      // TODO: Initialise the photoswipe library
-  </script>
+  <script src="{% static 'js/gallery.min.js' %}"></script>
 {% endblock %}
 
 {% block topbar %}{% endblock %}
@@ -47,9 +38,33 @@
     </svg>
   </section>
 
-  <div class="grid-container">
-    {{ gallery_photos }}
-  </div>
+  <section class="grid-container gallery-container" itemscope itemtype="http://schema.org/ImageGallery">
+    {% for list in gallery_photos %}
+      <div class="grid-x gallery-row">
+        {% for item in list %}
+          {% if list|more_than_one %}
+            {% image item.image width-400 as gallery_item %}
+          {% else %}
+            {% image item.image width-800 as gallery_item %}
+          {% endif %}
+          {% image item.image width-1536 as gallery_item_large %}
+          <figure class="small-12 medium-auto cell gallery-item {% if list|more_than_one %}singular{% endif %}"
+                  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+            <a href="{{ gallery_item_large.url }}" itemprop="contentUrl"
+               data-size="{{ gallery_item_large.width }}x{{ gallery_item_large.height }}">
+              <img src="{{ gallery_item.url }}" alt="{{ item.title }}" itemprop="thumbnail">
+            </a>
+            <figcaption itemprop="caption description">
+              {{ item.caption }}
+              <span itemprop="copyrightHolder">Photo: {{ item.attribution }}</span>
+            </figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    {% empty %}
+      {# TODO: Empty state #}
+    {% endfor %}
+  </section>
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
   <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
