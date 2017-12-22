@@ -536,6 +536,10 @@
   background-blend-mode: normal;
   position: relative;
 
+  & h1 {
+    padding-right: 0;
+  }
+
   @include breakpoint(medium) {
     min-height: 67vh;
   }
@@ -570,10 +574,34 @@
 }
 
 .template-gallery-page .gallery-container {
-  .gallery-item {
-    figcaption {
+  margin-top: $global-margin*2;
+
+  & .gallery-item {
+    margin-left: $global-margin/2;
+    margin-right: $global-margin/2;
+    margin-bottom: $global-margin;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+      position: relative;
+      display: block;
+      min-height: 100%;
+      max-width: 100%;
+
+      -moz-transition: all 0.2s ease-in-out;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover img {
+      -moz-transform: scale(1.025);
+      -webkit-transform: scale(1.025);
+      transform: scale(1.025);
+    }
+
+    & figcaption {
       display: none;
     }
   }
-//  TODO
 }

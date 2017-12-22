@@ -43,11 +43,11 @@
       <div class="grid-x gallery-row">
         {% for item in list %}
           {% if list|more_than_one %}
-            {% image item.image width-400 as gallery_item %}
+            {% image item.image min-333x333 as gallery_item %}
           {% else %}
-            {% image item.image width-800 as gallery_item %}
+            {% image item.image min-500x500 as gallery_item %}
           {% endif %}
-          {% image item.image width-1536 as gallery_item_large %}
+          {% image item.image min-1024x1024 as gallery_item_large %}
           <figure class="small-12 medium-auto cell gallery-item {% if list|more_than_one %}singular{% endif %}"
                   itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
             <a href="{{ gallery_item_large.url }}" itemprop="contentUrl"
@@ -61,8 +61,6 @@
           </figure>
         {% endfor %}
       </div>
-    {% empty %}
-      {# TODO: Empty state #}
     {% endfor %}
   </section>
 
