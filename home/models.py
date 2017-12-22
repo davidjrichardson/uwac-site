@@ -76,12 +76,9 @@ class GalleryPage(Page):
         help_text='This is the image displayed on the home page as the first thing a user will see'
     )
 
-    def get_context(self, request, *args, **kwargs):
-        context = super(GalleryPage, self).get_context(request)
-
-        context['gallery_photos'] = chunks(self.gallery_items.all(), 3)
-
-        return context
+    @property
+    def photos(self):
+        return self.gallery_items.all()
 
 
 # This is required for the GalleryPage reference to work on the inline panel
@@ -110,14 +107,6 @@ class GalleryIndexPage(Page):
     @property
     def galleries(self):
         return GalleryPage.objects.live().descendant_of(self).order_by('-date')
-
-    def get_context(self, request, *args, **kwargs):
-        context = super(GalleryIndexPage, self).get_context(request)
-
-        # Chunkify the list of galleries into pairs
-        context['galleries'] = chunks(self.galleries, 2)
-
-        return context
 
 
     content_panels = Page.content_panels + [

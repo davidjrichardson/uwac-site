@@ -38,30 +38,23 @@
     </svg>
   </section>
 
-  <section class="grid-container gallery-container" itemscope itemtype="http://schema.org/ImageGallery">
-    {% for list in gallery_photos %}
-      <div class="grid-x gallery-row">
-        {% for item in list %}
-          {% if list|more_than_one %}
-            {% image item.image min-333x333 as gallery_item %}
-          {% else %}
-            {% image item.image min-500x500 as gallery_item %}
-          {% endif %}
-          {% image item.image min-1024x1024 as gallery_item_large %}
-          <figure class="small-12 medium-auto cell gallery-item {% if list|more_than_one %}singular{% endif %}"
-                  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="{{ gallery_item_large.url }}" itemprop="contentUrl"
-               data-size="{{ gallery_item_large.width }}x{{ gallery_item_large.height }}">
-              <img src="{{ gallery_item.url }}" alt="{{ item.title }}" itemprop="thumbnail">
-            </a>
-            <figcaption itemprop="caption description">
-              {{ item.caption }}
-              <span itemprop="copyrightHolder">Photo: {{ item.attribution }}</span>
-            </figcaption>
-          </figure>
-        {% endfor %}
-      </div>
-    {% endfor %}
+  <section class="grid-container">
+    <div class="gallery-container" itemscope itemtype="http://schema.org/ImageGallery">
+      {% for photo in self.photos %}
+        {% image photo.image min-500x500 as image %}
+        {% image photo.image min-1024x1024 as image_large %}
+        <figure class="gallery-item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+          <a href="{{ image_large.url }}" itemprop="contentUrl"
+             data-size="{{ image_large.width }}x{{ image_large.height }}">
+            <img src="{{ image.url }}" alt="{{ item.title }}" itemprop="thumbnail">
+          </a>
+          <figcaption itemprop="caption description">
+            {{ photo.caption }}
+            <span itemprop="copyrightHolder">Photo: {{ photo.attribution }}</span>
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
   </section>
 
   <!-- Root element of PhotoSwipe. Must have class pswp. -->

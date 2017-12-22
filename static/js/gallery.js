@@ -133,6 +133,9 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
         // define options (if needed)
         options = {
+            showHideOpacity:true,
+            showAnimationDuration: 200,
+            hideAnimationDuration: 200,
             // define gallery index (for URL)
             galleryUID: galleryElement.getAttribute('data-pswp-uid'),
             getThumbBoundsFn: function (index) {
