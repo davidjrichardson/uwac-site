@@ -4,43 +4,13 @@ from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.wagtailcore.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock
+from wagtail.wagtailcore.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock, PageChooserBlock
 from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
-
-
-class PullQuoteBlock(StructBlock):
-    quote = TextBlock('quote title')
-    attribution = CharBlock()
-
-    class Meta:
-        icon = 'openquote'
-
-
-class CreditImageBlock(StructBlock):
-    image = ImageChooserBlock()
-    credit = TextBlock(help_text='Image credit')
-
-    class Meta:
-        icon = 'image'
-
-
-class BlogStreamBlock(StreamBlock):
-    h2 = CharBlock(icon='title', classname='title')
-    h3 = CharBlock(icon='title', classname='title')
-    h4 = CharBlock(icon='title', classname='title')
-    paragraph = RichTextBlock(icon='pilcrow')
-    image = CreditImageBlock()
-    pullquote = PullQuoteBlock()
-    document = DocumentChooserBlock(icon='doc-full-inverse')
-    table = TableBlock(table_options={
-        'startRows': 1,
-        'startCols': 2
-    })
 
 
 class GalleryImage(models.Model):
@@ -92,6 +62,44 @@ GalleryPage.content_panels = Page.content_panels + [
 ]
 
 
+class PullQuoteBlock(StructBlock):
+    quote = TextBlock('quote title')
+    attribution = CharBlock()
+
+    class Meta:
+        icon = 'openquote'
+
+
+class CreditImageBlock(StructBlock):
+    image = ImageChooserBlock()
+    credit = TextBlock(help_text='Image credit')
+
+    class Meta:
+        icon = 'image'
+
+
+class GalleryBlock(StructBlock):
+    gallery = PageChooserBlock(target_model=GalleryPage)
+
+    class Meta:
+        icon = 'image'
+
+
+class BlogStreamBlock(StreamBlock):
+    h2 = CharBlock(icon='title', classname='title')
+    h3 = CharBlock(icon='title', classname='title')
+    h4 = CharBlock(icon='title', classname='title')
+    paragraph = RichTextBlock(icon='pilcrow')
+    image = CreditImageBlock()
+    pullquote = PullQuoteBlock()
+    gallery = GalleryBlock()
+    document = DocumentChooserBlock(icon='doc-full-inverse')
+    table = TableBlock(table_options={
+        'startRows': 1,
+        'startCols': 2
+    })
+
+
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
@@ -107,7 +115,6 @@ class GalleryIndexPage(Page):
     @property
     def galleries(self):
         return GalleryPage.objects.live().descendant_of(self).order_by('-date')
-
 
     content_panels = Page.content_panels + [
         FieldPanel('description')
