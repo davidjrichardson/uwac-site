@@ -41,9 +41,6 @@
         </div>
       </div>
     {% endif %}
-
-    <article>
-      {# TODO: Article #}
-    </article>
+    {% include 'home/includes/streamfield.html' with content=page.body %}
   </main>
 {% endblock %}

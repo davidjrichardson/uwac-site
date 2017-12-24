@@ -72,6 +72,7 @@ class PullQuoteBlock(StructBlock):
 
 class CreditImageBlock(StructBlock):
     image = ImageChooserBlock()
+    caption = TextBlock(help_text='Photo caption', required=False)
     credit = TextBlock(help_text='Image credit')
 
     class Meta:
