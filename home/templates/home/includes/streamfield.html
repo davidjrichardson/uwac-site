@@ -32,7 +32,7 @@
             <div class="gallery effect-sadie-horizontal" style="background-image: url({{ cover_image.url }});">
               <div>
                 <h2>{{ gallery_page.title }}</h2>
-                <p>{{ gallery_page.gallery_items.all|length }} photo{{ gallery_page.gallery_items.all|pluralize }}</p>
+                <p>Published {{ gallery_page.date|date:'jS F Y' }} | {{ gallery_page.gallery_items.all|length }} photo{{ gallery_page.gallery_items.all|pluralize }}</p>
                 <a href="{% pageurl gallery_page %}">View gallery</a>
               </div>
             </div>
