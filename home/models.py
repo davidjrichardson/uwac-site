@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
@@ -50,9 +51,8 @@ class GalleryPage(Page):
     def photos(self):
         return self.gallery_items.all()
 
-
-# This is required for the GalleryPage reference to work on the inline panel
-GalleryPage.content_panels = Page.content_panels + [
+    # This is required for the GalleryPage reference to work on the inline panel
+    content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('description'),
         FieldPanel('date'),
@@ -201,6 +201,14 @@ class BlogPage(Page):
             FieldPanel('cover_image_credit')
         ], heading='Blog post cover image')
     ]
+
+    @property
+    def further_reading(self):
+        siblings = BlogPage.objects.live().sibling_of(self, inclusive=False).order_by('-date')
+        latest = siblings.first()
+        next_article = siblings.filter(date__lte=self.date).exclude(id=latest.id).order_by('-date').first()
+
+        return [latest, next_article]
 
 
 @register_snippet
