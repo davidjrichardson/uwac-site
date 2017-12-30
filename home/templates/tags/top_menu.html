@@ -14,12 +14,10 @@
         <li><a href="{% pageurl site_root %}" class="{% if is_home %}current{% endif %}">Home</a></li>
         {% for menuitem in menuitems %}
           <li>
-            <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">
-              {{ menuitem.title }}
-              {% if menuitem.show_dropdown %}
-                {% nav_menu_children parent=menuitem %}
-              {% endif %}
-            </a>
+            <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">{{ menuitem.title }}</a>
+            {% if menuitem.show_dropdown %}
+              {% nav_menu_children parent=menuitem %}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
