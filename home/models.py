@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import models
-from django.db.models import Q
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
@@ -53,13 +52,13 @@ class GalleryPage(Page):
 
     # This is required for the GalleryPage reference to work on the inline panel
     content_panels = Page.content_panels + [
-    MultiFieldPanel([
-        FieldPanel('description'),
-        FieldPanel('date'),
-        ImageChooserPanel('gallery_cover')
-    ], heading='Gallery information'),
-    InlinePanel('gallery_items', label='Gallery photos')
-]
+        MultiFieldPanel([
+            FieldPanel('description'),
+            FieldPanel('date'),
+            ImageChooserPanel('gallery_cover')
+        ], heading='Gallery information'),
+        InlinePanel('gallery_items', label='Gallery photos')
+    ]
 
 
 class PullQuoteBlock(StructBlock):
@@ -123,7 +122,7 @@ class GalleryIndexPage(Page):
 
 
 class HomePage(Page):
-    # TODO: Subpage types
+    subpage_types = ['home.GalleryIndexPage', 'home.BlogPage', 'home.ContentPage']
 
     description = models.TextField(max_length=400, default='')
     cover_image = models.ForeignKey(
@@ -171,6 +170,17 @@ class HomePage(Page):
             context['cover_image_credit'] = None
 
         return context
+
+
+class ContentPage(Page):
+    parent_page_types = ['home.HomePage', 'home.ContentPage']
+    subpage_types = ['home.ContentPage']
+
+    body = StreamField(BlogStreamBlock)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel('body')
+    ]
 
 
 class BlogPage(Page):
