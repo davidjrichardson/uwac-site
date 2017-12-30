@@ -182,6 +182,10 @@ class ContentPage(Page):
         StreamFieldPanel('body')
     ]
 
+    @property
+    def is_child(self):
+        return type(self.get_parent().specific) is not HomePage
+
 
 class BlogPage(Page):
     parent_page_types = ['home.HomePage']

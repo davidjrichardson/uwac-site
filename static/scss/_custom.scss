@@ -1,6 +1,17 @@
 // Custom CSS
+
+// Breadcrumbs
+.breadcrumb-wrapper {
+  background-color: $breadcrumb-bg;
+  margin-bottom: 2 * $global-margin;
+
+  & .breadcrumbs {
+    margin: 0.75rem 0;
+  }
+}
+
+// Jumbotron
 .jumbotron {
-  // TODO: Flexbox layout for the jumbotron
   display: flex;
   flex-direction: column;
 
@@ -862,6 +873,16 @@ div.section-header > h2 {
   }
 }
 
+// Generic content page
+.page-info {
+  margin-bottom: $global-margin;
+
+  & p {
+    color: $dark-gray;
+    font-size: rem-calc(14);
+  }
+}
+
 // Photo gallery
 .gallery-container {
   padding-top: 2*$global-padding;
@@ -911,7 +932,6 @@ div.section-header > h2 {
       grid-row: span 2;
     }
   }
-
 }
 
 .gallery-cover-image {
