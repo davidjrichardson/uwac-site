@@ -9,13 +9,13 @@
     <a href="{% pageurl site_root %}">UWAC</a>
   </div>
   <div class="sidenav-menu">
-    <ul class="vertical menu drilldown" data-drilldown>
+    <ul class="vertical menu drilldown" data-drilldown data-auto-height="true" data-animate-height="false">
       <li><a href="{% pageurl site_root %}" class="{% if is_home %}current{% endif %}">Home</a></li>
       {% for menuitem in menuitems %}
         <li>
           <a href="{% pageurl menuitem %}" class="{% if menuitem.active %}current{% endif %}">{{ menuitem.title }}</a>
           {% if menuitem.show_drilldown %}
-            {% nav_menu_children parent=menuitem %}
+            {% nav_menu_children parent=menuitem side_menu=True %}
           {% endif %}
         </li>
       {% endfor %}
