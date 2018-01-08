@@ -882,6 +882,7 @@ div.section-header > h2 {
 // Generic content page
 .page-info {
   margin-bottom: $global-margin;
+  margin-top: $global-margin*2;
 
   & p {
     color: $dark-gray;
