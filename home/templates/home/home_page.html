@@ -66,7 +66,7 @@
         </div>
 
         {% for post in blogs %}
-          <div class="grid-x article infinite-item">
+          <div class="grid-x article infinite-item" data-post-number="{{ forloop.counter0 }}">
             <div class="cell">
               <a href="{% pageurl post %}"><h2>{{ post.title }}</h2></a>
               <p class="subtitle">Posted by {{ post.owner.get_full_name }} on {{ post.date|date:'jS F Y' }}</p>

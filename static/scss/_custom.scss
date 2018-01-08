@@ -207,12 +207,18 @@ div.section-header > h2 {
 
   .article {
     position: relative;
-    animation: post-show 0.8s;
+    animation: post-show 1s;
+
+    @for $i from 0 through 4 {
+      &[data-post-number="#{(4 - $i)}"] {
+        animation-delay: ($i * -0.1s);
+      }
+    }
   }
 }
 
 @keyframes post-show {
-  0% {
+  40% {
     opacity: 0;
     top: -20px;
   }
