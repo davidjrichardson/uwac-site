@@ -762,7 +762,7 @@ div.section-header > h2 {
 
 // Photo gallery index
 .template-gallery-index .section-header {
-  margin-top: $global-margin;
+  margin-top: 2*$global-margin;
   margin-bottom: $global-margin;
 
   & h2 {

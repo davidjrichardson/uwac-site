@@ -10,7 +10,9 @@
   {% endif %}
 
   <section class="grid-container page-info">
-    <h2>{{ page.title }}</h2>
+    <div class="section-header">
+      <h2>{{ page.title }}</h2>
+    </div>
     <p>Last updated {{ page.latest_revision_created_at|time:'P' }} on the {{ page.latest_revision_created_at|date:'jS F Y' }}</p>
   </section>
 
