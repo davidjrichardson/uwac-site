@@ -10,6 +10,28 @@
   }
 }
 
+// Error codes
+.error-code {
+  font-size: rem-calc(128);
+  line-height: rem-calc(128);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(208);
+    line-height: rem-calc(208);
+  }
+
+  font-weight: 900;
+
+  position: relative;
+  margin-top: $global-margin*2;
+
+  background: $primary-color url('/static/img/error_image.jpg') no-repeat center;
+  background-blend-mode: multiply;
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 // Jumbotron
 .jumbotron {
   display: flex;

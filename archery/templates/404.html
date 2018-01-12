@@ -2,8 +2,24 @@
 
 {% block body_class %}template-404{% endblock %}
 
-{% block content %}
-    <h1>Page not found</h1>
+{% block title %}UWCS | 404 Not Found{% endblock %}
 
-    <h2>Sorry, this page could not be found.</h2>
+{% block extra_css %}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-12 error">
+        <h1 class="text-center error-code">404</h1>
+      </div>
+      <div class="cell small-12">
+        <h2 class="text-center">Page not found</h2>
+      </div>
+      <div class="cell small-12">
+        <p class="text-center">Sorry, this page could not be found.</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

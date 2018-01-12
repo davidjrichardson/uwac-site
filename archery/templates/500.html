@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Internal server error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>Internal server error</h1>
+{% extends "base.html" %}
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
-    </body>
-</html>
+{% block body_class %}template-500{% endblock %}
+
+{% block title %}UWCS | 404 Not Found{% endblock %}
+
+{% block extra_css %}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-12 error">
+        <h1 class="text-center error-code">500</h1>
+      </div>
+      <div class="cell small-12">
+        <h2 class="text-center">Internal server error</h2>
+      </div>
+      <div class="cell small-12">
+        <p class="text-center">Sorry, there seems to be an error. Please try again soon.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
