@@ -120,11 +120,9 @@
       var infinite = new Waypoint.Infinite({
           element: $('.infinite-container')[0],
           onBeforePageLoad: function () {
-              // TODO: Animate the loading state in/out
               $('.loading-posts').show();
           },
           onAfterPageLoad: function ($items) {
-              // TODO: Animate the loading state in/out
               $('.loading-posts').hide();
           }
       })
