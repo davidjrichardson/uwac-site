@@ -1,4 +1,4 @@
-{% load static wagtailuserbar compress base_tags %}
+{% load static wagtailuserbar wagtailcore_tags compress base_tags %}
 {% get_site_root as site_root %}
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     UWAC | {{ self.title }}{% endif %}{% endblock %}</title>
-  <meta name="description" content=""/>
+  <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% endif %}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#E53935"/>
 
@@ -40,6 +40,8 @@
   <link rel="icon" sizes="32x32" href="{% static 'favicon-32.png' %}">
   <link rel="shortcut icon" sizes="196x196" href="{% static 'favicon-chrome-196.png'%}">
   <link rel="mask-icon" href="{% static 'icon.svg' %}" color="#E53935">
+
+  <link rel="canonical" href="https://uwac.co.uk{% pageurl self %}">
 
   {# Global stylesheets #}
   {% compress css %}
