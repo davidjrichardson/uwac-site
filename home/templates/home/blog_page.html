@@ -13,6 +13,8 @@
   <meta property="og:site_name" content="{{ site_root.title }}">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_GB">
+  <meta property="og:determiner" content="the">
+  <meta property="og:description" content="{{ page.excerpt|striptags }}">
   <meta property="og:url" content="https://uwac.co.uk{% pageurl self %}">
   {% if page.cover_image %}
     {% image page.cover_image width-1024 as cover_image_1024 %}
