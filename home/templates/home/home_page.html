@@ -53,11 +53,6 @@
 
   <section class="news">
     <div class="grid-container">
-      {% if cover_image_credit %}
-        <p class="cover-credit">
-          Banner image credit: {{ cover_image_credit }}
-        </p>
-      {% endif %}
       <div class="infinite-container">
         <div class="grid-x">
           <div class="cell section-header">
@@ -98,8 +93,6 @@
     </div>
   </section>
 {% endblock %}
-
-
 
 {% block extra_js %}
   <script type="text/javascript" src="{% static 'js/jquery.waypoints.min.js' %}"></script>

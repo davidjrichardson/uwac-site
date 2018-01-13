@@ -29,17 +29,6 @@
   </section>
 
   <main>
-    {% if page.cover_image_credit %}
-      <div class="grid-container">
-        <div class="grid-x">
-          <div class="auto cell">
-            <p class="cover-credit">
-              Banner image credit: {{ page.cover_image_credit }}
-            </p>
-          </div>
-        </div>
-      </div>
-    {% endif %}
     {% include 'home/includes/streamfield.html' with content=page.body %}
   </main>
 

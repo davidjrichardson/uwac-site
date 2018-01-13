@@ -67,17 +67,19 @@ def nav_menu_children(context, parent, side_menu=False):
 
 # Retrieves the footer sitemap items
 @register.inclusion_tag('tags/footer.html', takes_context=True)
-def footer(context, parent):
+def footer(context, parent, calling_page):
     if Footer.objects.first():
         return {
             'menuitems': parent.get_children().live().in_menu(),
             'facebook_url': Footer.objects.first().facebook_url,
             'twitter_url': Footer.objects.first().twitter_url,
+            'calling_page': calling_page,
             # required by the pageurl tag that we want to use within this template
             'request': context['request'],
         }
     else:
         return {
+            'calling_page': calling_page,
             # required by the pageurl tag that we want to use within this template
             'request': context['request'],
         }

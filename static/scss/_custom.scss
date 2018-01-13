@@ -67,8 +67,10 @@
 }
 
 .cover-credit {
-  color: $dark-gray;
+  color: rgba(255, 255, 255, 0.54);
   font-size: rem-calc(14);
+
+  margin-bottom: 0.4rem;
 }
 
 // Top-bar styling
@@ -431,12 +433,6 @@ div.section-header > h2 {
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
-}
-
-// Blog post
-.template-blog-page .cover-credit {
-  margin-top: $global-margin;
-  margin-bottom: 2*$global-margin;
 }
 
 .further-reading {

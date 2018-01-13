@@ -3,6 +3,15 @@
 
 <div class="footer">
   <div class="grid-container">
+    {% if calling_page.cover_image_credit and calling_page.cover_image %}
+      <div class="grid-x">
+        <div class="cell small-12">
+          <p class="cover-credit">
+            Banner image credit: {{ calling_page.cover_image_credit }}
+          </p>
+        </div>
+      </div>
+    {% endif %}
     <div class="grid-x grid-padding-x">
       <div class="cell small-12 medium-4">
         <h5>{{ site_root.title }}</h5>
@@ -37,7 +46,8 @@
       </div>
       <div class="cell">
         <p class="credits text-center">
-          Copyright © University of Archery Club. Website built by <a href="https://github.com/davidjrichardson">David Richardson</a>. Powered by <a href="https://wagtail.io/">Wagtail</a>.
+          Copyright © University of Archery Club. Website built by <a href="https://github.com/davidjrichardson">David
+          Richardson</a>. Powered by <a href="https://wagtail.io/">Wagtail</a>.
         </p>
       </div>
     </div>

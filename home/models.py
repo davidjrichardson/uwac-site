@@ -164,10 +164,8 @@ class HomePage(Page):
         # Get the url for the cover image if there is one
         if self.cover_image:
             context['cover_image'] = self.cover_image.get_rendition('width-1536').url
-            context['cover_image_credit'] = self.cover_image_credit
         else:
             context['cover_image'] = None
-            context['cover_image_credit'] = None
 
         return context
 

@@ -7,7 +7,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
-<head>
+<head {% block ogp_prefix %}{% endblock %}>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
@@ -53,6 +53,10 @@
   {% block extra_css %}
     {# Override this in templates to add extra css #}
   {% endblock %}
+
+  {% block ogp_metadata %}
+    {# OpenGraph data goes here #}
+  {% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
@@ -71,7 +75,7 @@
   <div class="site-content">
     {% block content %}{% endblock %}
   </div>
-  {% footer parent=site_root %}
+  {% footer parent=site_root calling_page=self %}
 </div>
 
 {# Global javascript #}
