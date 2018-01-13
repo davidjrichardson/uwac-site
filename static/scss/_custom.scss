@@ -979,6 +979,8 @@ div.section-header > h2 {
   background-blend-mode: normal;
   position: relative;
 
+  z-index: -2;
+
   & h1 {
     padding-right: 0;
   }
@@ -988,7 +990,7 @@ div.section-header > h2 {
   }
 
   &:before {
-    z-index: 1;
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
@@ -999,11 +1001,6 @@ div.section-header > h2 {
     background: linear-gradient(to bottom, transparentize($primary-colour, 0.2) 0%,
             transparentize($primary-colour, 1) 75%);
     content: '';
-  }
-
-  & .top-bar,
-  & .jumbotron-padding {
-    z-index: 2;
   }
 
   & p {
