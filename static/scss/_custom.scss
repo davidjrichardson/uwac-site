@@ -979,14 +979,16 @@ div.section-header > h2 {
   background-blend-mode: normal;
   position: relative;
 
-  z-index: -2;
-
   & h1 {
     padding-right: 0;
   }
 
   @include breakpoint(medium) {
     min-height: 67vh;
+  }
+
+  & .gallery-cover-image {
+    z-index: -2;
   }
 
   &:before {
