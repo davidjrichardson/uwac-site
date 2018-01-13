@@ -4,6 +4,28 @@
 
 {% block body_class %}template-gallery-index{% endblock %}
 
+{% block ogp_prefix %}prefix="og: http://ogp.me/ns#"{% endblock %}
+
+{% block ogp_metadata %}
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:site_name" content="{{ site_root.title }}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:determiner" content="the">
+  <meta property="og:description" content="{{ page.description|striptags }}">
+  <meta property="og:url" content="https://uwac.co.uk{% pageurl self %}">
+
+  {# All of the images in the gallery #}
+  {% for gallery in page.galleries %}
+    {% image gallery.gallery_cover min-250x250 as thumbnail %}
+    <meta property="og:image" content="https://uwac.co.uk{{ thumbnail.url }}">
+    <meta property="og:image:width" content="{{ thumbnail.width }}">
+    <meta property="og:image:height" content="{{ thumbnail.height }}">
+    <meta property="og:image:type" content="{{ thumbnail|get_image_mime_type }}">
+    <meta property="og:image:alt" content="{{ thumbnail.alt }}">
+  {% endfor %}
+{% endblock %}
+
 {% block content %}
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
