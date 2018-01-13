@@ -17,13 +17,44 @@
 
 {% block topbar %}{% endblock %}
 
+{% block ogp_prefix %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"{% endblock %}
+
+{% block ogp_metadata %}
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:site_name" content="{{ site_root.title }}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:determiner" content="the">
+  <meta property="og:description" content="{{ page.description|striptags }}">
+  <meta property="og:url" content="https://uwac.co.uk{% pageurl self %}">
+
+  {# All of the images in the gallery #}
+  {% for photo in self.photos %}
+    {% image photo.image min-250x250 as image %}
+    <meta property="og:image" content="https://uwac.co.uk{{ image.url }}">
+    <meta property="og:image:width" content="{{ image.width }}">
+    <meta property="og:image:height" content="{{ image.height }}">
+    <meta property="og:image:type" content="{{ image|get_image_mime_type }}">
+    <meta property="og:image:alt" content="{{ image.alt }}">
+  {% endfor %}
+
+  <meta property="article:content_tier" content="free">
+  <meta property="article:publisher" content="https://www.facebook.com/warwickarchery/">
+  <meta property="article:section" content="Photo Galleries">
+  <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
+  <meta property="article:modified_time" content="{{ page.last_published_at|date:'c' }}">
+  {% if page.expire_at %}
+    <meta property="article:expiration_time" content="{{ page.expire_at|date:'c' }}">
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <section class="jumbotron gallery-jumbotron">
     <div class="gallery-cover-image">
       {% image page.gallery_cover width-1536 %}
     </div>
     {% top_menu parent=site_root calling_page=self transparent=True %}
-    <div class="grid-container jumbotron-padding">
+    <div class="grid-container jumbotron-padding gallery-title">
       <div class="grid-x grid-margin-x">
         <div class="auto cell">
           <h1 class="text-center">{{ page.title }}</h1>
