@@ -1,6 +1,8 @@
 from django import template
 from wagtail.wagtailcore.models import Page
 
+import mimetypes
+
 from home.models import Footer
 
 register = template.Library()
@@ -98,6 +100,11 @@ def breadcrumbs(context):
         'ancestors': ancestors,
         'request': context['request'],
     }
+
+
+@register.filter
+def get_image_mime_type(image):
+    return mimetypes.guess_type(image.url)[0]
 
 
 @register.filter
