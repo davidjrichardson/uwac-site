@@ -89,6 +89,9 @@ class PlainImageBlock(StructBlock):
     image = ImageChooserBlock()
     caption = TextBlock(help_text='Photo caption', required=False)
 
+    class Meta:
+        icon = 'image'
+
 
 class BlogStreamBlock(StreamBlock):
     h2 = CharBlock(icon='title', classname='title')
