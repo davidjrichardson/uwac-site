@@ -42,6 +42,7 @@
       {% elif child.block_type == 'paragraph' %}
         {{ child.value | richtext }}
       {% elif child.block_type == 'plain_image' %}
+        {% image child.value.image min-500x500 as image %}
         <figure class="blog-image" style="max-width: {{ image.width }}px; max-height: {{ image.height }}px;">
           <img src="{{ image.url }}" alt="{{ image.title }}">
           <figcaption>
