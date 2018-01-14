@@ -85,12 +85,18 @@ class GalleryBlock(StructBlock):
         icon = 'image'
 
 
+class PlainImageBlock(StructBlock):
+    image = ImageChooserBlock()
+    caption = TextBlock(help_text='Photo caption', required=False)
+
+
 class BlogStreamBlock(StreamBlock):
     h2 = CharBlock(icon='title', classname='title')
     h3 = CharBlock(icon='title', classname='title')
     h4 = CharBlock(icon='title', classname='title')
     paragraph = RichTextBlock(icon='pilcrow')
-    image = CreditImageBlock()
+    credit_image = CreditImageBlock()
+    plain_image = PlainImageBlock()
     pullquote = PullQuoteBlock()
     gallery = GalleryBlock()
     document = DocumentChooserBlock(icon='doc-full-inverse')
