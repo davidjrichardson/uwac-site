@@ -66,7 +66,7 @@
       <h3>Further reading</h3>
       <div class="grid-x">
         {% for item in page.further_reading %}
-          <div class="small-12 medium-6 cell further-item {% if not item.cover_image %}no-image{% endif %}">
+          <div class="small-12 medium-auto cell further-item {% if not item.cover_image %}no-image{% endif %}">
             {% image item.cover_image min-300x300 %}
             <div>
               <h3>{{ item.title }}</h3>
