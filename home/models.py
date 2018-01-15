@@ -226,10 +226,16 @@ class BlogPage(Page):
     @property
     def further_reading(self):
         siblings = BlogPage.objects.live().sibling_of(self, inclusive=False).order_by('-date')
-        latest = siblings.first()
-        next_article = siblings.filter(date__lte=self.date).exclude(id=latest.id).order_by('-date').first()
 
-        return [latest, next_article]
+        if siblings:
+            latest = siblings.first()
+            next_article = siblings.filter(date__lte=self.date).exclude(id=latest.id).order_by('-date').first()
+            if next_article:
+                return [latest, next_article]
+            else:
+                return [latest]
+        else:
+            return []
 
 
 @register_snippet

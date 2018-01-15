@@ -52,7 +52,7 @@
           {% endif %}
         </figure>
       {% elif child.block_type == 'credit_image' %}
-        {% image child.value.image min-500x500 as image %}
+        {% image child.value.image max-770x770 as image %}
         <figure class="blog-image" style="max-width: {{ image.width }}px; max-height: {{ image.height }}px;">
           <img src="{{ image.url }}" alt="{{ image.title }}">
           <figcaption>
