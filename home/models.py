@@ -172,7 +172,7 @@ class HomePage(Page):
 
         # Get the url for the cover image if there is one
         if self.cover_image:
-            context['cover_image'] = self.cover_image.get_rendition('width-1536')
+            context['cover_image'] = self.cover_image.get_rendition('width-1536|desaturate-100')
         else:
             context['cover_image'] = None
 
