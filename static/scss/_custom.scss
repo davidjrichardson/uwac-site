@@ -238,6 +238,11 @@ div.section-header > h2 {
         animation-delay: ($i * -0.1s);
       }
     }
+
+    & .cover-image {
+      border-radius: 2*$global-radius;
+      margin-bottom: 0.5*$global-margin;
+    }
   }
 }
 

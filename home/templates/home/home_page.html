@@ -81,11 +81,15 @@
 
         {% for post in blogs %}
           <div class="grid-x article infinite-item" data-post-number="{{ forloop.counter0 }}">
-            <div class="cell">
+            {% if post.cover_image %}
+              <div class="cell small-12">
+                {% image post.cover_image fill-800x250 class="cover-image show-for-medium" %}
+                {% image post.cover_image fill-600x300 class="cover-image hide-for-medium" %}
+              </div>
+            {% endif %}
+            <div class="cell small-12">
               <a href="{% pageurl post %}"><h2>{{ post.title }}</h2></a>
               <p class="subtitle">Posted by {{ post.owner.get_full_name }} on {{ post.date|date:'jS F Y' }}</p>
-            </div>
-            <div class="cell">
               {{ post.excerpt | richtext }}
             </div>
             <div class="cell">
