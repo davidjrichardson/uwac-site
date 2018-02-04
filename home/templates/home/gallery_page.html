@@ -81,7 +81,9 @@
           </a>
           <figcaption itemprop="caption description">
             {{ photo.caption }}
-            <span itemprop="copyrightHolder">Photo: {{ photo.attribution }}</span>
+            {% if photo.attribution %}
+              <span itemprop="copyrightHolder">Photo: {{ photo.attribution }}</span>
+            {% endif %}
           </figcaption>
         </figure>
       {% endfor %}

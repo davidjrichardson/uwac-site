@@ -21,7 +21,7 @@ class GalleryImage(models.Model):
         related_name='+',
         help_text='This is the image displayed on the home page as the first thing a user will see'
     )
-    attribution = models.CharField(max_length=255)
+    attribution = models.CharField(blank=True, max_length=255)
     caption = models.CharField(max_length=255, blank=True)
     page = ParentalKey('GalleryPage', related_name='gallery_items')
 
