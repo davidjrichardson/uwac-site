@@ -1,4 +1,4 @@
-from wagtail.wagtailimages.image_operations import Operation
+from wagtail.images.image_operations import Operation
 from willow.plugins.pillow import PillowImage
 
 
