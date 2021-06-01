@@ -21,7 +21,7 @@ requests==2.18.4
 rjsmin==1.0.12
 six==1.11.0
 Unidecode==0.4.21
-urllib3==1.22
+urllib3==1.26.5
 wagtail==2.0
 webencodings==0.5.1
 Willow==1.1
