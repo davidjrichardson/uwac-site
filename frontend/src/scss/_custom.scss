@@ -25,7 +25,7 @@
   position: relative;
   margin-top: $global-margin*2;
 
-  background: $primary-color url('/static/img/error_image.jpg') no-repeat center;
+  background: $primary-color url('../img/error_image.jpg') no-repeat center;
   background-blend-mode: multiply;
   background-size: cover;
   -webkit-background-clip: text;
