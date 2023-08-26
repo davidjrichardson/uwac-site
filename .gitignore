@@ -156,3 +156,4 @@ archery/components/bower_components/
 .sass-cache/
 static/CACHE/
 media/
+.DS_Store
