@@ -1,0 +1,7 @@
+*
+
+!.gitignore
+!__init__.py
+!base.py
+!dev.py
+!production.example.py
