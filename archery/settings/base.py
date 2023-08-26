@@ -51,9 +51,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-
-    'djangobower',
-    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -124,8 +121,6 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -137,15 +132,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-# Django Compressor
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_PATH, "../components")
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss',
-     'sass --scss --style compressed -I "%s/bower_components/foundation-sites/scss" -I "%s/bower_components/motion-ui" "{infile}" "{outfile}"' % (
-     BOWER_COMPONENTS_ROOT, BOWER_COMPONENTS_ROOT)),
-)
 
 # Wagtail settings
 

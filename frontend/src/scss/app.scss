@@ -1,8 +1,8 @@
 @charset 'utf-8';
 
-@import 'settings';
-@import 'foundation';
-@import 'motion-ui';
+@import './settings';
+@import 'foundation-sites/scss/foundation';
+@import 'motion-ui/src/motion-ui';
 
 @include foundation-global-styles;
 // @include foundation-grid;
@@ -53,4 +53,4 @@
 @include motion-ui-animations;
 
 // Custom SCSS
-@import 'custom';
+@import './custom';
