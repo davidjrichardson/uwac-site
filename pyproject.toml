@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "uwac-site"
+version = "1.0.0"
+description = "The website for the University of Warwick Archery Club"
+authors = ["David <david@tankski.co.uk>"]
+readme = "README.md"
+license = "MIT"
+packages = [{include = "uwac_site"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django = "2.2.28"
+wagtail = "2.13.5"
+django-appconf = "^1.0.5"
+djangorestframework = "3.11.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
