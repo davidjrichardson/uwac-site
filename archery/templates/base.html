@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailcore_tags compress base_tags %}
+{% load static wagtailuserbar wagtailcore_tags base_tags %}
 {% get_site_root as site_root %}
 
 <!DOCTYPE html>
@@ -43,11 +43,6 @@
 
   <link rel="canonical" href="https://uwac.co.uk{% pageurl self %}">
 
-  {# Global stylesheets #}
-  {% compress css %}
-    <link href="{% static 'scss/app.scss' %}" rel="stylesheet" type="text/x-scss"/>
-  {% endcompress %}
-
   <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Muli:400,400i,700,700i" rel="stylesheet">
@@ -81,8 +76,7 @@
 </div>
 
 {# Global javascript #}
-<script type="text/javascript" src='{% static 'js/jquery.min.js' %}'></script>
-<script type="text/javascript" src='{% static 'js/foundation.js' %}'></script>
+<script type="application/javascript" src="{% static 'bundle.js' %}"></script>
 
 <script type="text/javascript">
     $(document).foundation();

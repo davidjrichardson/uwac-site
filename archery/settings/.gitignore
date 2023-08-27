@@ -5,3 +5,5 @@
 !base.py
 !dev.py
 !production.example.py
+!.uwac-site.env.example
+!.postgres.env.example
