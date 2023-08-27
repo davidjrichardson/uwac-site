@@ -157,3 +157,4 @@ archery/components/bower_components/
 static/CACHE/
 media/
 .DS_Store
+docker-compose.override.yml
