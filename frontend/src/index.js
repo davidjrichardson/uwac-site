@@ -1,5 +1,6 @@
 import './scss/app.scss';
-import './js/foundation';
-import './js/gallery';
+
+import 'foundation-sites'
+// import './js/gallery';
 
 // TODO: Import photoswipe
