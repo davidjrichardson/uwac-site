@@ -29,6 +29,7 @@
   "dependencies": {
     "foundation-sites": "^6.4.3",
     "motion-ui": "^1.2.2",
-    "photoswipe": "^5.3.8"
+    "photoswipe": "^4.1.2",
+    "waypoints": "^4.0.1"
   }
 }
