@@ -1,2 +1,3 @@
 media/
 docker-compose.override.yml
+archery/settings/production.*

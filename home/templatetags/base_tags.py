@@ -1,5 +1,5 @@
 from django import template
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
 
 import mimetypes
 
@@ -16,7 +16,7 @@ def has_menu_children(page):
 def get_site_root(context):
     # NB this returns a core.Page, not the implementation-specific model used
     # so object-comparison to self will return false as objects would differ
-    return context['request'].site.root_page
+    return Site.find_for_request(context['request']).root_page
 
 
 # Retrieves top-level menu items for the sidebar

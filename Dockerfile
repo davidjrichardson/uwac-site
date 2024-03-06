@@ -32,7 +32,8 @@ RUN export SHELL=bash \
 
 USER uwac_site
 
-RUN $FNM_DIR/fnm exec npm ci \
+RUN mkdir -p ~/.npm \
+  && $FNM_DIR/fnm exec npm ci \
   && $FNM_DIR/fnm exec npm run build:production \
   && $FNM_DIR/fnm exec npm cache clean --force
 

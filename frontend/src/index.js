@@ -1,6 +1,20 @@
+import 'foundation-sites'
+import 'waypoints/lib/jquery.waypoints';
+import 'waypoints/lib/shortcuts/infinite';
+
 import './scss/app.scss';
 
-import 'foundation-sites'
+// TODO: Import photoswipe
 // import './js/gallery';
 
-// TODO: Import photoswipe
+$(document).foundation();
+
+const _infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0],
+    onBeforePageLoad: function () {
+        $('.loading-posts').show();
+    },
+    onAfterPageLoad: function ($items) {
+        $('.loading-posts').hide();
+    }
+})
