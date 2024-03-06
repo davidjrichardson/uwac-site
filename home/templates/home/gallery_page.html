@@ -4,17 +4,6 @@
 
 {% block body_class %}template-gallery-page{% endblock %}
 
-{% block extra_css %}
-  <link rel="stylesheet" href="{% static 'scss/photoswipe.css' %}"/>
-  <link rel="stylesheet" href="{% static 'scss/photoswipe-default-skin.css' %}"/>
-{% endblock %}
-
-{% block extra_js %}
-  <script src="{% static 'js/photoswipe.min.js' %}"></script>
-  <script src="{% static 'js/photoswipe-ui-default.min.js' %}"></script>
-  <script src="{% static 'js/gallery.min.js' %}"></script>
-{% endblock %}
-
 {% block topbar %}{% endblock %}
 
 {% block ogp_prefix %}prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"{% endblock %}
