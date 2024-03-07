@@ -1,4 +1,4 @@
-FROM python:3.8-bullseye
+FROM python:3.10-bookworm
 LABEL maintainer="david@tankski.co.uk"
 EXPOSE 8000
 
