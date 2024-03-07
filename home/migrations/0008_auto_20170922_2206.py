@@ -6,7 +6,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Gallery date')),
-                ('description', wagtail.core.fields.RichTextField(default='', help_text='The description of the event or purpose of the gallery, displayed under the title')),
+                ('description', wagtail.fields.RichTextField(default='', help_text='The description of the event or purpose of the gallery, displayed under the title')),
                 ('gallery_cover', models.ForeignKey(blank=True, help_text='This is the image displayed on the home page as the first thing a user will see', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
             ],
             options={

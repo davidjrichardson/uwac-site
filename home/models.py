@@ -3,13 +3,13 @@ from django.db import models
 from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.table_block.blocks import TableBlock
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.core.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock, PageChooserBlock
-from wagtail.core.fields import StreamField, RichTextField
-from wagtail.core.models import Page
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.blocks import StructBlock, TextBlock, CharBlock, StreamBlock, RichTextBlock, PageChooserBlock
+from wagtail.fields import StreamField, RichTextField
+from wagtail.models import Page
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.edit_handlers import FieldPanel
 from wagtail.snippets.models import register_snippet
 
 
@@ -26,7 +26,7 @@ class GalleryImage(models.Model):
     page = ParentalKey('GalleryPage', related_name='gallery_items')
 
     panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('attribution'),
         FieldPanel('caption')
     ]
@@ -55,7 +55,7 @@ class GalleryPage(Page):
         MultiFieldPanel([
             FieldPanel('description'),
             FieldPanel('date'),
-            ImageChooserPanel('gallery_cover')
+            FieldPanel('gallery_cover')
         ], heading='Gallery information'),
         InlinePanel('gallery_items', label='Gallery photos')
     ]
@@ -148,7 +148,7 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname='full'),
-        ImageChooserPanel('cover_image'),
+        FieldPanel('cover_image'),
         FieldPanel('cover_image_credit')
     ]
 
@@ -183,10 +183,10 @@ class ContentPage(Page):
     parent_page_types = ['home.HomePage', 'home.ContentPage']
     subpage_types = ['home.ContentPage']
 
-    body = StreamField(BlogStreamBlock)
+    body = StreamField(BlogStreamBlock, use_json_field=True)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body')
+        FieldPanel('body')
     ]
 
     @property
@@ -197,7 +197,7 @@ class ContentPage(Page):
 class BlogPage(Page):
     parent_page_types = ['home.HomePage']
 
-    body = StreamField(BlogStreamBlock)
+    body = StreamField(BlogStreamBlock, use_json_field=True)
     date = models.DateTimeField('Post date', default=timezone.now)
     excerpt = RichTextField(help_text='This is displayed on the home and blog listing pages', default='')
     cover_image = models.ForeignKey(
@@ -215,10 +215,10 @@ class BlogPage(Page):
             FieldPanel('title', classname="full title"),
             FieldPanel('excerpt'),
             FieldPanel('date'),
-            StreamFieldPanel('body')
+            FieldPanel('body')
         ], heading='Post content'),
         MultiFieldPanel([
-            ImageChooserPanel('cover_image'),
+            FieldPanel('cover_image'),
             FieldPanel('cover_image_credit')
         ], heading='Blog post cover image')
     ]

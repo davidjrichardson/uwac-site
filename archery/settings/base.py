@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'wagtail.images',
     'wagtail.search',
     'wagtail.admin',
-    'wagtail.core',
+    'wagtail',
     'wagtail.contrib.table_block',
 
     'modelcluster',
@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    # 'wagtail.core.middleware.SiteMiddleware',
+    # 'wagtail.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -110,6 +110,7 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -150,7 +151,7 @@ WAGTAIL_SITE_NAME = "University of Warwick Archery Club"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://uwac.co.uk'
+WAGTAILADMIN_BASE_URL = 'https://uwac.co.uk'
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = json.loads(env('ALLOWED_HOSTS'))
