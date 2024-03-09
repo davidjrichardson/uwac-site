@@ -7,3 +7,4 @@
 !production.example.py
 !.uwac-site.env.example
 !.postgres.env.example
+!storage_backends.py
