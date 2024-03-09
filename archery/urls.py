@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 
@@ -25,7 +25,7 @@ urlpatterns = [
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
-    #    url(r'^pages/', include(wagtail_urls)),
+    #    re_path(r'^pages/', include(wagtail_urls)),
 ]
 
 if settings.DEBUG:

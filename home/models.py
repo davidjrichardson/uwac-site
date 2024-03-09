@@ -9,7 +9,6 @@ from wagtail.fields import StreamField, RichTextField
 from wagtail.models import Page
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import FieldPanel
 from wagtail.snippets.models import register_snippet
 
 
