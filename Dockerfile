@@ -1,5 +1,6 @@
 FROM python:3.10-bookworm
 LABEL maintainer="david@tankski.co.uk"
+LABEL org.opencontainers.image.source https://github.com/davidjrichardson/uwac-site
 EXPOSE 8000
 
 RUN useradd -rm -d /home/uwac_site -s /bin/bash -u 1001 uwac_site
